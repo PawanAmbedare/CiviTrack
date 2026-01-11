@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Report Pothole{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <style>#map{height:300px;border:1px solid #ddd;border-radius:4px}</style>
+{% endblock %}
+
+{% block content %}
+  <h2>Report a Pothole</h2>
+  <form method="post" enctype="multipart/form-data" id="reportForm">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <label>Title</label>
+    {{ form.title.errors }}
+    {{ form.title }}
+
+    <label>Description</label>
+    {{ form.description.errors }}
+    {{ form.description }}
+
+    <label>Image (optional)</label>
+    {{ form.image.errors }}
+    {{ form.image }}
+
+    <label>Severity</label>
+    {{ form.severity.errors }}
+    {{ form.severity }}
+
+    <label>Pick Location (click on map)</label>
+    {{ form.latitude.errors }} {{ form.longitude.errors }}
+    <div id="map"></div>
+    {{ form.latitude }}
+    {{ form.longitude }}
+
+    <p><button class="btn" type="submit">Submit Report</button></p>
+  </form>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script>
+    // Inline map init will be delegated to main.js which checks for #map
+  </script>
+{% endblock %}

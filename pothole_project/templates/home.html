@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h2>Report potholes to improve city roads</h2>
+    <p>Quickly notify municipal teams about potholes with a photo and location.</p>
+    <p><a class="btn" href="{% url 'report_pothole' %}">Report a Pothole</a></p>
+  </section>
+
+  <section>
+    <h3>Why report?</h3>
+    <ul>
+      <li>Helps maintenance teams prioritize</li>
+      <li>Improves road safety</li>
+      <li>Community-driven civic reporting</li>
+    </ul>
+  </section>
+{% endblock %}
